@@ -282,23 +282,6 @@
             }
         }
 
-        function crearGlobos() {
-            const emojis = ['🎈', '🎉', '🎊', '🎁', '🎀', '⭐'];
-            for (let i = 0; i < 15; i++) {
-                const balloon = document.createElement('div');
-                balloon.className = 'balloon';
-                balloon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                balloon.style.left = Math.random() * 90 + '%';
-                balloon.style.top = Math.random() * 90 + '%';
-                balloon.style.animationDelay = Math.random() * 2 + 's';
-                balloon.onclick = function() {
-                    this.style.animation = 'explode 0.5s ease-out forwards';
-                    setTimeout(() => this.remove(), 500);
-                    crearFuegosArtificiales(this.offsetLeft, this.offsetTop);
-                };
-                document.body.appendChild(balloon);
-            }
-        }
 
         function calcularEdad() {
             const edad = 16; // Puedes cambiar esto
