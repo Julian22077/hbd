@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños! 🎂</title>
+    <title>Tarjeta de Cumpleaños</title>
     <style>
         * {
             margin: 0;
@@ -12,356 +12,271 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden;
-            background: linear-gradient(45deg, #ff6b9d, #c06c84, #6c5ce7, #a29bfe);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
         }
 
         .container {
-            text-align: center;
-            z-index: 10;
             position: relative;
-        }
-
-        .intro {
-            color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-        }
-
-        .intro h1 {
-            font-size: 3em;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-30px); }
-            60% { transform: translateY(-15px); }
-        }
-
-        .big-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 25px 60px;
-            font-size: 1.8em;
-            border-radius: 50px;
+            width: 400px;
+            height: 300px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            font-weight: bold;
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .big-button:hover {
-            transform: scale(1.1) rotate(-2deg);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-
-        .surprise-content {
-            display: none;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .surprise-content h2 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: rotate3d 3s infinite;
-        }
-
-        @keyframes rotate3d {
-            0% { transform: perspective(400px) rotateY(0deg); }
-            50% { transform: perspective(400px) rotateY(180deg); }
-            100% { transform: perspective(400px) rotateY(360deg); }
-        }
-
-        .funny-text {
-            font-size: 1.5em;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .age-calculator {
-            font-size: 1.3em;
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 15px;
-        }
-
-        .dancing-emoji {
-            font-size: 5em;
-            display: inline-block;
-            animation: dance 1s infinite;
-            margin: 0 10px;
-        }
-
-        @keyframes dance {
-            0%, 100% { transform: rotate(-10deg); }
-            50% { transform: rotate(10deg); }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: #f0f;
+        .envelope-wrapper {
             position: absolute;
-            animation: confetti-fall 3s linear infinite;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 5px;
         }
 
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.8s ease;
         }
 
-        .cake {
-            font-size: 8em;
-            animation: cakeSpin 4s ease-in-out infinite;
-            display: inline-block;
-            margin: 20px;
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f4e4c1;
+            border: 3px solid #d4b896;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1;
         }
 
-        @keyframes cakeSpin {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(5deg) scale(1.1); }
-            50% { transform: rotate(0deg) scale(1.2); }
-            75% { transform: rotate(-5deg) scale(1.1); }
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: #f4e4c1;
+            border: 3px solid #d4b896;
+            border-bottom: none;
+            transform-origin: top;
+            transition: transform 0.8s ease;
+            z-index: 5;
+            border-radius: 5px 5px 0 0;
         }
 
-        .joke-button {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.2em;
-            border-radius: 30px;
-            cursor: pointer;
-            margin: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .envelope-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 150px solid #e8d4a8;
+            border-bottom: none;
         }
 
-        .joke-button:hover {
-            transform: scale(1.1) rotate(5deg);
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+        }
+
+        .flap::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 150px solid #f4e4c1;
+            border-bottom: none;
+            transform-origin: top center;
+            transition: transform 0.8s ease;
+        }
+
+        .flap::after {
+            content: '💌';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            transition: opacity 0.3s ease;
+        }
+
+        .container.opened .flap::after {
+            opacity: 0;
+        }
+
+        .container.opened .flap::before {
+            transform: rotateX(180deg);
+        }
+
+        .container.opened .envelope-front {
+            transform: rotateX(-180deg);
+        }
+
+        .letter {
+            position: absolute;
+            width: 90%;
+            height: 380px;
+            background: linear-gradient(to bottom, #fff9e6 0%, #fffef7 100%);
+            left: 5%;
+            top: 280px;
+            border: 2px solid #d4b896;
+            border-radius: 5px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: top 0.8s ease 0.3s;
+            z-index: 2;
+            overflow-y: auto;
+        }
+
+        .container.opened .letter {
+            top: -80px;
+        }
+
+        .letter h1 {
+            color: #e91e63;
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .letter p {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .letter .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-style: italic;
+            color: #666;
+        }
+
+        .decorations {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .balloon {
-            position: fixed;
-            font-size: 3em;
-            animation: float 6s ease-in-out infinite;
-            cursor: pointer;
+            position: absolute;
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
         }
+
+        .balloon:nth-child(1) { left: 10%; top: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { right: 10%; top: 20%; animation-delay: 0.5s; }
+        .balloon:nth-child(3) { left: 15%; bottom: 15%; animation-delay: 1s; }
+        .balloon:nth-child(4) { right: 15%; bottom: 10%; animation-delay: 1.5s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-50px) rotate(10deg); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .hidden {
-            display: none;
+        .instructions {
+            position: absolute;
+            bottom: -60px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .firework {
-            position: fixed;
-            width: 5px;
-            height: 5px;
+        .container.opened .instructions {
+            opacity: 0;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+        }
+
+        .envelope-seal {
+            position: absolute;
+            bottom: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: #d4af37;
             border-radius: 50%;
-            animation: explode 1s ease-out forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            z-index: 4;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease 0.5s;
         }
 
-        @keyframes explode {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--x), var(--y));
-                opacity: 0;
-            }
+        .container.opened .envelope-seal {
+            opacity: 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="intro" id="intro">
-            <h1>🎊 ¡Hola ISA! 🎊</h1>
-            <p style="font-size: 1.5em; margin-bottom: 30px;">
-                Prepárate para la sorpresa más épica de tu vida...
-            </p>
-            <button class="big-button" onclick="revelarSorpresa()">
-                ¡HAZ CLIC AQUÍ! 🎁
-            </button>
+    <div class="decorations">
+        <div class="balloon">🎈</div>
+        <div class="balloon">🎉</div>
+        <div class="balloon">🎊</div>
+        <div class="balloon">🎁</div>
+    </div>
+
+    <div class="container" id="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="envelope-back"></div>
+                
+                <div class="letter">
+                    <div class="hearts">💕✨💕</div>
+                    <h1>¡Feliz Cumpleaños! 🎂</h1>
+                    <p>Querida amiga,</p>
+                    <p>En este día tan especial quiero desearte todo lo mejor del mundo. Que cada momento de tu vida esté lleno de alegría, amor y felicidad.</p>
+                    <p>Gracias por ser una amiga increíble, por todos los momentos compartidos, las risas y el apoyo incondicional. Eres una persona maravillosa y mereces todo lo mejor que la vida tiene para ofrecer.</p>
+                    <p>Que este nuevo año de vida esté lleno de nuevas aventuras, sueños cumplidos y momentos inolvidables. ¡Que todos tus deseos se hagan realidad!</p>
+                    <p>Celebra este día como te mereces, rodeada de amor y felicidad. ¡Eres especial y te deseo lo mejor siempre!</p>
+                    <div class="signature">Con mucho cariño,<br>Tu amigo/a ❤️</div>
+                </div>
+
+                <div class="envelope-seal">🎀</div>
+                <div class="envelope-front"></div>
+                <div class="flap"></div>
+            </div>
         </div>
 
-        <div class="surprise-content" id="surprise">
-            <h2>🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h2>
-            
-            <div class="cake" onclick="explotarPastel()">🎂</div>
-            
-            <div class="funny-text">
-                ¡Oficialmente eres <span id="age">un año</span> más sabia!<br>
-            </div>
-
-            <div class="age-calculator">
-                Eso son aproximadamente:<br>
-                <span id="days"></span> días de ser increíble ✨<br>
-                <span id="hours"></span> horas de hacer reír a todos <br>
-                <span id="minutes"></span> minutos de ser la mejor amiga 💖
-            </div>
-
-            <div class="dancing-emoji">🎈</div>
-            <div class="dancing-emoji">🎈</div>
-            <div class="dancing-emoji">🎈</div>
-
-            <div class="funny-text">
-                Dato curioso: Has dado <span id="steps"></span> pasos<br>
-            </div>
-
-        </div>
+        <div class="instructions">👆 Haz clic en el sobre para abrir tu tarjeta</div>
     </div>
 
     <script>
-        const chistes = [
-            "¿Qué le dice un techo a otro? Techo de menos 😂",
-            "¿Por qué los pájaros no usan Facebook? Porque ya tienen Twitter 🐦",
-            "¿Qué hace una abeja en el gimnasio? ¡Zum-ba! 💪",
-            "¿Cómo se despiden los químicos? Ácido un placer 🧪",
-            "¿Qué le dice un jardinero a otro? Nos vemos cuando podamos 🌱",
-            "¿Cuál es el colmo de un electricista? Que su esposa se llame Luz y sus hijos se llamen Foco y Bombillo ⚡",
-            "¿Por qué el libro de matemáticas está triste? Porque tiene muchos problemas 📚"
-        ];
-
-        function revelarSorpresa() {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('surprise').style.display = 'block';
-            
-            crearConfeti();
-            crearGlobos();
-            calcularEdad();
-            reproducirSonido();
-        }
-
-        function crearConfeti() {
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                    confetti.style.animationDelay = Math.random() * 3 + 's';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 30);
-            }
-        }
-
-
-        function calcularEdad() {
-            const edad = 16; // Puedes cambiar esto
-            const dias = edad * 365;
-            const horas = dias * 24;
-            const minutos = horas * 60;
-            const pasos = dias * 8000; // promedio de pasos al día
-
-            document.getElementById('age').textContent = edad;
-            document.getElementById('days').textContent = dias.toLocaleString();
-            document.getElementById('hours').textContent = horas.toLocaleString();
-            document.getElementById('minutes').textContent = minutos.toLocaleString();
-            document.getElementById('steps').textContent = pasos.toLocaleString();
-        }
-
-
-        function explotarPastel() {
-            crearFuegosArtificiales(window.innerWidth / 2, window.innerHeight / 2);
-            crearConfeti();
-        }
-
-        function crearFuegosArtificiales(x, y) {
-            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-            for (let i = 0; i < 30; i++) {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                firework.style.left = x + 'px';
-                firework.style.top = y + 'px';
-                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
-                
-                const angle = (Math.PI * 2 * i) / 30;
-                const velocity = 50 + Math.random() * 50;
-                firework.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
-                firework.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
-                
-                document.body.appendChild(firework);
-                setTimeout(() => firework.remove(), 1000);
-            }
-        }
-
-        function reproducirSonido() {
-            // Crear un tono de celebración simple
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const notas = [523.25, 587.33, 659.25, 698.46, 783.99];
-            
-            notas.forEach((freq, i) => {
-                setTimeout(() => {
-                    const oscillator = audioContext.createOscillator();
-                    const gainNode = audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(audioContext.destination);
-                    
-                    oscillator.frequency.value = freq;
-                    oscillator.type = 'sine';
-                    
-                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-                    
-                    oscillator.start(audioContext.currentTime);
-                    oscillator.stop(audioContext.currentTime + 0.5);
-                }, i * 200);
-            });
-        }
-
-        // Confeti continuo cada 5 segundos
-        setInterval(() => {
-            if (document.getElementById('surprise').style.display === 'block') {
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        const confetti = document.createElement('div');
-                        confetti.className = 'confetti';
-                        confetti.style.left = Math.random() * 100 + '%';
-                        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-                        document.body.appendChild(confetti);
-                        setTimeout(() => confetti.remove(), 3000);
-                    }, i * 50);
-                }
-            }
-        }, 5000);
+        const container = document.getElementById('container');
+        
+        container.addEventListener('click', function() {
+            this.classList.toggle('opened');
+        });
     </script>
 </body>
 </html>
